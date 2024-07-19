@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'ElectronPulse';
+  src: url('../fonts/Electron-Pulse.otf') format('opentype'),
+       url('../fonts/Electron-Pulse.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ElectronPulseItalic';
+  src: url('../fonts/Electron-Pulse-Italic.otf') format('opentype'),
+       url('../fonts/Electron-Pulse-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --Main-Color: #92C83E;
+  --Matte-Black: #28282B;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%; /* Make sure html, body, and #root div span the full height */
+  margin: 0; /* Remove default margin */
+}
+
+#root {
+  display: flex; /* Use Flexbox */
+  flex-direction: column; /* Stack children vertically */
+}
+
+main {
+  display: flex; /* Use Flexbox */
+  justify-content: center; /* Horizontally center content */
+  flex-grow: 1; /* Expand to fill available space */
+  background: var(--Matte-Black, #28282B); /* Matte black background, fallback color */
+}

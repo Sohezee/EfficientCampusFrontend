@@ -1,0 +1,20 @@
+header {
+    width: 100%;
+    height: 104px; /* Set a fixed height for the header */
+    background: var(--Main-Color, #92C83E);
+    display: flex;
+    padding-left: 30px; /* Add padding from the left side */
+  }
+  
+  
+  .header-container {
+    display: flex;
+    align-items: center; /* Vertically centers the content */
+    justify-content: flex-start; /* Aligns content to the left */
+  }
+  
+  .header-logo {
+    font-family: 'ElectronPulseItalic';
+    font-size: 64px; /* Adjust font size as needed */
+    color: white;
+  }

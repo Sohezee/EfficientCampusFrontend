@@ -1,0 +1,41 @@
+.welcome {
+    display: flex; /* Enable Flexbox */
+    align-items: center; /* Vertically center items */
+    padding-top: 360px;
+    flex-direction: column; /* Arrange items in a row (this is the default and can be omitted) */
+    font-family: 'Roboto';
+    font-size: 32px;
+  }
+  .welcome .text {
+    color:white;
+    text-align: center; /* Centers text horizontally */
+  }
+  .welcome h1 {
+    font-family: "Electron Pulse";
+    font-size: 110px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 100px; /* 90.909% */
+  }
+  
+  .welcome span, .welcome h1, .welcome button {
+    display: block; /* Ensure elements are block-level */
+    margin: 5px 0; /* Add some margin for spacing */
+  }
+  
+  .welcome button {
+    padding: 13px 20px; /* Add padding to the button */
+    margin-top: 40px;
+    font-size: 16px; /* Adjust font size */
+    background: var(--Main-Color, #92C83E); /* Button background color */
+    border: none; /* Remove default border */
+    color: white; /* Button text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-family: Inter;
+    border-radius: 10px;
+    transition: background 0.3s ease; /* Transition effect for background color */
+  }
+
+  .welcome button:hover {
+    background: #6b942b; /* Darker shade of the original color */
+}
