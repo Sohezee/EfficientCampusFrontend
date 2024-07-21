@@ -1,0 +1,97 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the home container */
+}
+
+.input-panel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 250px;
+    align-items: center; /* Center children horizontally */
+    background-color: #434343;
+    padding: 80px 14vw;
+    max-width: 930px;
+    min-width: 195px;
+    border-radius: 10px;
+}
+
+.select {
+    width: 45vw;
+    max-width: 550px;
+    min-width: 135px;
+    background-color: #777;
+    color: white;
+}
+
+.dropdown {
+    margin: 30px 0px;
+}
+
+.update {
+    padding: 10px 26px; /* Add padding to the button */
+    margin-top: 40px;
+    font-size: 16px; /* Adjust font size */
+    background: var(--Main-Color, #92C83E); /* Button background color */
+    border: none; /* Remove default border */
+    color: white; /* Button text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-family: Inter;
+    border-radius: 10px;
+    transition: background 0.3s ease; /* Transition effect for background color */
+    align-self: center; /* Ensure the button is centered within the flex container */
+}
+
+.update:hover {
+    background: #6b942b; /* Darker shade of the original color */
+}
+
+
+
+.button {
+    padding: 10px 26px; /* Add padding to the button */
+    font-size: 16px; /* Adjust font size */
+    border: none; /* Remove default border */
+    color: white; /* Button text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-family: Inter;
+    border-radius: 10px;
+    transition: background 0.3s ease; /* Transition effect for background color */
+    margin-top: 3%;
+}
+
+.delete-button {
+    background: #C83E3E; /* Button background color */
+}
+
+.delete-button:hover {
+    background: #9c2d2d; /* Darker shade of the original color */
+}
+
+.delete-button img {
+    margin-left: 5px;
+}
+
+.logout-button {
+    background: #e3a410; /* Button background color */
+    /*margin-right: 20px;*/
+}
+
+.logout-button:hover {
+    background: #b0831a; /* Darker shade of the original color */
+}
+
+
+.account {
+    width: 73vw;
+    max-width: 930px;
+    min-width: 195px;
+    display: flex;
+    /*border: 1px solid red;*/
+    justify-content: center;
+    flex-direction: column;
+}
+
+label {
+    color: white;
+}
