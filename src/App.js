@@ -4,6 +4,8 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 
 
+import { UserProvider } from './components/UserContext';
+
 import './assets/styles/App.css';
 
 import React from 'react';
@@ -21,9 +23,9 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <>
+    <UserProvider>
       <RouterProvider router={ router } />
-    </>
+    </UserProvider>
   );
 }
 
