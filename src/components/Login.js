@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
+import { UserContext } from '../components/UserContext';
+import Modal from './Modal';
+import logo from '../assets/images/logo.svg';
+
+// Styles
 import '../assets/styles/App.css';
 import '../assets/styles/loading.css';
-import { useNavigate } from 'react-router-dom';
-import logo from '../assets/images/logo.svg';
-import $ from 'jquery';
-import 'jquery-validation';
-import { UserContext } from '../components/UserContext';
-//import Modal from './Modal';
+import '../assets/styles/Modal.css';
+import '../assets/styles/bootstrap.css';
+import '../assets/styles/Login.css';
+import '../assets/styles/util.css';
 
+// Vendor styles
 import '../login/vendor/bootstrap/css/bootstrap.min.css';
 import '../login/fonts/font-awesome-4.7.0/css/font-awesome.min.css';
 import '../login/fonts/iconic/css/material-design-iconic-font.min.css';
@@ -17,11 +23,6 @@ import '../login/vendor/css-hamburgers/hamburgers.min.css';
 import '../login/vendor/animsition/css/animsition.min.css';
 import '../login/vendor/select2/select2.min.css';
 import '../login/vendor/daterangepicker/daterangepicker.css';
-import '../assets/styles/Login.css';
-import '../assets/styles/util.css';
-import '../assets/styles/loading.css';
-
-
 
 const Login = () => {
     const navigate = useNavigate();
@@ -30,16 +31,19 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
-    const [validated, setValidated] = useState(false);
     const [action, setAction] = useState('Logging in...');
+    const [modalInfo, setModalInfo] = useState({ showModal: false, title: '', body: '', handleConfirm: null, handleCancel: null });
+
 
     const { updateUserInfo } = useContext(UserContext);
     const [error, setError] = useState(null);
 
-    
+    const closeModal = () => {(setModalInfo(prevInfo => ({ ...prevInfo, showModal: false })))}
 
     const login = (email, password) => {
         setLoading(true);
+        setAction('Logging in...');
+        email = email.toLowerCase();
         axios.post('http://localhost:8080/api/users/login', JSON.stringify({ email, password }), {
             headers: {
                 'Content-Type': 'application/json',
@@ -48,21 +52,18 @@ const Login = () => {
         })
         .then(response => {
             setLoading(false);
-            updateUserInfo(response.data);
+            updateUserInfo(response.data, true);
             navigate('/home');
         })
         .catch(error => {
-            if (error.response && error.response.data.message === "A user with email this doesn't exists.") {
+            if (error.response && error.response.data.message === "A user with this email doesn't exist.") {
                 setLoading(false);
-                var result = window.confirm("Unregistered user email. Register?");
-                console.log(result);
-                if (result === 'true') {
-                    verify(email, password);
-                }
+
+                setModalInfo({ showModal: true, title: 'Unregistered User', body: 'A user with this email doesn\'t exist. Register email?', handleConfirm: () => {closeModal(); verify(email, password);}, handleCancel: closeModal});
             } else {
                 setError(error);
                 setLoading(false);
-                alert('Error: ' + error.message);
+                setModalInfo({ showModal: true, title: 'Error', body: error.response.status === 401 ? "Invalid email or password" : error.message, handleConfirm: closeModal, handleCancel: null});
             }
         });
     };
@@ -71,6 +72,8 @@ const Login = () => {
 
     const verify = (email, password) => {
         setLoading(true);
+        setAction('Verifying credentials, this may take a moment...');
+        email = email.toLowerCase();
         axios.post('http://localhost:8080/api/users/verify', JSON.stringify({ email, password }), {
             headers: {
                 'Content-Type': 'application/json',
@@ -80,18 +83,19 @@ const Login = () => {
         .then(response => {
             setLoading(false);
             if (response.data) addUser(email, password);
-            else window.alert('Invalid email or password');
+            else setModalInfo({ showModal: true, title: 'Invalid email or password', body: 'Invalid email or password. No Google account with given email password pair exists, or something went wrong on our end. Please try again.', handleConfirm: closeModal, handleCancel: null});
         })
         .catch(error => {
                 setError(error);
                 setLoading(false);
-                alert('Error: ' + error.message);
+                setModalInfo({ showModal: true, title: 'Error', body: error.response.status === 401 ? "Invalid email or password" : error.message, handleConfirm: closeModal, handleCancel: null});
         });
     };
 
     const addUser = (email, password) => {
         setLoading(true);
-
+        setAction('Adding user to database...');
+        email = email.toLowerCase();
         const user = {
             email,
             password,
@@ -110,16 +114,16 @@ const Login = () => {
         .then(response => {
             setLoading(false);
             if (response.status >= 200 && response.status < 300) {
-                updateUserInfo(response.data);
+                updateUserInfo(response.data, true);
                 navigate('/home');
-                window.alert('User registered successfully');
+                //setModalInfo({ showModal: true, title: 'Success', body: 'User registered succefully', handleConfirm: closeModal, handleCancel: null});
             }
-            window.alert('Something went wrong');
+            setModalInfo({ showModal: true, title: 'Error', body: 'Something went wrong', handleConfirm: closeModal, handleCancel: null});
         })
         .catch(error => {
                 setError(error);
                 setLoading(false);
-                alert('Error: ' + error.message);
+                setModalInfo({ showModal: true, title: 'Error', body: error.response.status === 401 ? "Invalid email or password" : error.message, handleConfirm: closeModal, handleCancel: null});
         });
     };
 
@@ -158,11 +162,9 @@ const Login = () => {
         });
 
         if (isValid) {
-            setValidated(true);
-            // Add your conditional code here
             login(email, password);
             if (error != null) {
-                alert('Error: ' + error);
+                setModalInfo({ showModal: true, title: 'Error', body: error.response.status === 401 ? "Invalid email or password" : error.message, handleConfirm: closeModal, handleCancel: null});
             }
         }
 
@@ -171,7 +173,7 @@ const Login = () => {
 
     const validate = (input) => {
         if (input.type === 'email' || input.name === 'email') {
-            const emailRegex = /.*rsdmo\.org$/;
+            const emailRegex = /.*rsdmo\.org$/i;
             if (!input.value.trim().match(emailRegex)) {
                 return false;
             }
@@ -206,6 +208,9 @@ const Login = () => {
             <div className="login">
                 <div className="limiter">
                     <div className="container-login100">
+
+                    <Modal showModal={modalInfo.showModal} title={modalInfo.title} body={modalInfo.body} handleConfirm={modalInfo.handleConfirm} handleCancel={modalInfo.handleCancel}/>
+
                         <div className="wrap-login100">
                             <form className="login100-form validate-form" onSubmit={handleSubmit}>
                                 <span className="login100-form-title p-b-26">
@@ -223,6 +228,7 @@ const Login = () => {
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
                                         onFocus={handleFocus}
+                                        disabled={modalInfo.showModal}
                                     />
                                     <span className="focus-input100" data-placeholder="Email"></span>
                                 </div>
@@ -238,6 +244,7 @@ const Login = () => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         onFocus={handleFocus}
+                                        disabled={modalInfo.showModal}
                                     />
                                     <span className="focus-input100" data-placeholder="Password"></span>
                                 </div>
@@ -245,7 +252,7 @@ const Login = () => {
                                 <div className="container-login100-form-btn">
                                     <div className="wrap-login100-form-btn">
                                         <div className="login100-form-bgbtn"></div>
-                                        <button className="login100-form-btn">
+                                        <button className="login100-form-btn" disabled={loading || modalInfo.showModal}>
                                             Login
                                         </button>
                                     </div>

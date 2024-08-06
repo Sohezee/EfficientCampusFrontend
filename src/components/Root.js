@@ -5,18 +5,6 @@ import '../assets/styles/Root.css';
 
 function Root() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [userInfo, setUserInfo] = useState( 
-        {
-            offeringNameOne: "",
-            teacherDisplayOne: "",
-            offeringNameTwo: "",
-            teacherDisplayTwo: "",
-        }
-    );
-
-    const updateUserInfo = (userInfo) => {
-        setUserInfo(userInfo);
-    }
 
     return (
         <>
@@ -26,7 +14,7 @@ function Root() {
                 </div>
             </header>
             <main>
-                <Outlet updateUserInfo={updateUserInfo} userInfo={userInfo}/>
+                <Outlet/>
             </main>
         </>
         

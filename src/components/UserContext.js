@@ -8,15 +8,32 @@ export const UserProvider = ({ children }) => {
         teacherDisplayOne: "",
         offeringNameTwo: "",
         teacherDisplayTwo: "",
+        email: "",
+        password: "",
+        id: ""
     });
 
-    const updateUserInfo = (userInfo) => {
+    const [loggedIn, setLoggedIn] = useState(false);
+    
+    const updateUserInfo = (userInfo, loggedIn) => {
         setUserInfo(userInfo);
+        setLoggedIn(true); 
     };
 
-    return (
-        <UserContext.Provider value={{ userInfo, updateUserInfo }}>
-            {children}
+    const logout = () => {
+        setUserInfo({
+          offeringNameOne: '',
+          teacherDisplayOne: '',
+          offeringNameTwo: '',
+          teacherDisplayTwo: '',
+          email: '',
+        });
+        setLoggedIn(false);
+      };
+
+      return (
+        <UserContext.Provider value={{ userInfo, loggedIn, updateUserInfo, logout }}>
+          {children}
         </UserContext.Provider>
-    );
+      );
 };

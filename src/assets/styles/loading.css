@@ -16,6 +16,10 @@
     position: relative;
     top: 65px;
 }
+
+.loading small {
+    text-align: center;
+}
 .profile-main-loader {
     position: absolute;
     left: 50%;
