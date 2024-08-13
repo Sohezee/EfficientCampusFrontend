@@ -107,7 +107,7 @@ const Home = () => {
                     <label htmlFor="mod-one-select">Ac-Lab Mod One</label>
                     {/* Ensure each option has a value that does not contain more than one instance of " --- " */}
                     <select className="select form-select" name="mod-one-select" onChange={handleSelectChangeOne} value={selectedValueOne}>
-                        <option value="none">No Sign Up</option>
+                        <option value="No Sign Up">No Sign Up</option>
                         <option value="LIBRARY --- BALLARD-LONG">Library --- Ballard-Long</option>
                     </select>
                 </div>
@@ -115,7 +115,7 @@ const Home = () => {
                     <label htmlFor="mod-two-select">Ac-Lab Mod Two</label>
                     {/* Ensure each option has a value that does not contain more than one instance of " --- " */}
                     <select className="select form-select" name="mod-two-select" onChange={handleSelectChangeTwo} value={selectedValueTwo}>
-                        <option value="none">No Sign Up</option>
+                        <option value="No Sign Up">No Sign Up</option>
                         <option value="LIBRARY --- BALLARD-LONG">Library --- Ballard-Long</option>
                     </select>
                 </div>

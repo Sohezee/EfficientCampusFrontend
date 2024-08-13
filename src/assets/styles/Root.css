@@ -22,7 +22,7 @@ header {
     justify-content: flex-start; /* Aligns content to the left */
   }
   
-  .header-logo {
+  .header-logo button{
     font-family: 'ElectronPulseItalic';
     font-size: 64px; /* Adjust font size as needed */
     color: white;

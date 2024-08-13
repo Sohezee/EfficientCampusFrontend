@@ -74,7 +74,12 @@ const Login = () => {
         setLoading(true);
         setAction('Verifying credentials, this may take a moment...');
         email = email.toLowerCase();
-        axios.post('http://localhost:8080/api/users/verify', JSON.stringify({ email, password }), {
+        const requestBody = { 
+            email, 
+            password,
+            attempts: "2" 
+        };
+        axios.post('http://localhost:8080/api/users/verify', JSON.stringify(requestBody), {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
