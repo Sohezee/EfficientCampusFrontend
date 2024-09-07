@@ -25,7 +25,7 @@ const Home = () => {
     const deleteAccount = () => {
         const email = userInfo.email;
         axios
-        .delete('http://localhost:8080/api/users', {
+        .delete('http://efficientcampus.org:8080/api/users', {
           data: { email },
           headers: {
             'Content-Type': 'application/json',
@@ -71,7 +71,7 @@ const Home = () => {
             teacherDisplayOne: teacherOne
         };
 
-        axios.put('http://localhost:8080/api/users', user, {
+        axios.put('http://efficientcampus.org:8080/api/users', user, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
