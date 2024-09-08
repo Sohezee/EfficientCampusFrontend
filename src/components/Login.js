@@ -44,7 +44,7 @@ const Login = () => {
         setLoading(true);
         setAction('Logging in...');
         email = email.toLowerCase();
-        axios.post('http://efficientcampus.org:8080/api/users/login', JSON.stringify({ email, password }), {
+        axios.post('https://efficientcampus.org/api/users/login', JSON.stringify({ email, password }), {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -79,7 +79,7 @@ const Login = () => {
             password,
             attempts: "2" 
         };
-        axios.post('http://efficientcampus.org:8080/api/users/verify', JSON.stringify(requestBody), {
+        axios.post('https://efficientcampus.org/api/users/verify', JSON.stringify(requestBody), {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -110,7 +110,7 @@ const Login = () => {
             teacherDisplayTwo: ""
         };
 
-        axios.post('http://efficientcampus.org:8080/api/users', user, {
+        axios.post('https://efficientcampus.org/api/users', user, {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
