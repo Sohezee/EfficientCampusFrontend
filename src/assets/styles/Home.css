@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+
 .home {
     display: flex;
     flex-direction: column;
@@ -36,7 +38,7 @@
     border: none; /* Remove default border */
     color: white; /* Button text color */
     cursor: pointer; /* Pointer cursor on hover */
-    font-family: Inter;
+    font-family: Inter, "Inter Tight", sans-serif;
     border-radius: 10px;
     transition: background 0.3s ease; /* Transition effect for background color */
     align-self: center; /* Ensure the button is centered within the flex container */
@@ -54,7 +56,7 @@
     border: none; /* Remove default border */
     color: white; /* Button text color */
     cursor: pointer; /* Pointer cursor on hover */
-    font-family: Inter;
+    font-family: Inter, "Inter Tight", sans-serif;
     border-radius: 10px;
     transition: background 0.3s ease; /* Transition effect for background color */
     margin-top: 3%;

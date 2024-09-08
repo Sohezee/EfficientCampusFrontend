@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Carrois+Gothic+SC&family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 .welcome {
     display: flex; /* Enable Flexbox */
     align-items: center; /* Vertically center items */
-    padding-top: 360px;
+    padding-top: 14%;
     flex-direction: column; /* Arrange items in a row (this is the default and can be omitted) */
-    font-family: 'Roboto';
+    font-family: 'Roboto', "Inter Tight", sans-serif;
     font-size: 32px;
   }
   .welcome .text {
@@ -11,7 +12,7 @@
     text-align: center; /* Centers text horizontally */
   }
   .welcome h1 {
-    font-family: "Electron Pulse";
+    font-family: "Electron Pulse", "Carrois Gothic SC", Arial, Helvetica, sans-serif;
     font-size: 110px;
     font-style: italic;
     font-weight: 400;
@@ -31,7 +32,7 @@
     border: none; /* Remove default border */
     color: white; /* Button text color */
     cursor: pointer; /* Pointer cursor on hover */
-    font-family: Inter;
+    font-family: Inter, "Inter Tight", sans-serif;
     border-radius: 10px;
     transition: background 0.3s ease; /* Transition effect for background color */
   }
